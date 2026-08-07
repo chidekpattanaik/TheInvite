@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Main Character Energy ✨</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="bg-galaxy">
+  
+  <!-- 6 Floating Background Pictures for YES screen (More filled!) -->
+  <div id="yes-bg-images" style="display:none;">
+    <!-- These are reliable placeholder images. You can swap the URLs with your own pics later! -->
+    <img src="https://picsum.photos/seed/date1/200/200" class="float-img img1">
+    <img src="https://picsum.photos/seed/date2/200/200" class="float-img img2">
+    <img src="https://picsum.photos/seed/date3/200/200" class="float-img img3">
+    <img src="https://picsum.photos/seed/date4/200/200" class="float-img img4">
+    <img src="https://picsum.photos/seed/date5/200/200" class="float-img img5">
+    <img src="https://picsum.photos/seed/date6/200/200" class="float-img img6">
+  </div>
+
+  <div class="wrap">
+    
+    <!-- SCREEN 1 -->
+    <section class="card" id="screen-1">
+      <h1 class="interactive-text">Hey you ✨</h1>
+      <p class="lead interactive-text">Got a tiny, lowkey important question... 👀</p>
+      <button class="big-btn primary" id="openName">Hear me out... 🫣</button>
+    </section>
+
+    <!-- SCREEN 2 (The New Rich Options) -->
+    <section class="card" id="screen-2" style="display:none">
+      <div class="emoji interactive-text">💕💭</div>
+      <h1 class="interactive-text">What's our perfect date vibe?</h1>
+      <p class="lead interactive-text">Pick as many as you want!</p>
+      
+      <div class="options-list">
+        
+        <button class="rich-chip">
+          <span class="chip-title">📖 Bookstore Date</span>
+          <span class="chip-desc">Browsing novels & showing each other our favorite chapters.</span>
+        </button>
+
+        <button class="rich-chip">
+          <span class="chip-title">🥟 Street Food Spree</span>
+          <span class="chip-desc">Pani puri, momos, and eating until we can't breathe.</span>
+        </button>
+
+        <button class="rich-chip">
+          <span class="chip-title">🍛 Proper Lunch</span>
+          <span class="chip-desc">A cozy sit-down meal so we can actually talk.</span>
+        </button>
+
+        <button class="rich-chip">
+          <span class="chip-title">🥥 Drink Run</span>
+          <span class="chip-desc">Coconut water, cold drinks, or iced coffee to chill.</span>
+        </button>
+
+        <button class="rich-chip">
+          <span class="chip-title">🏰 City Exploration</span>
+          <span class="chip-desc">Wandering Charminar, Wonderla, or Chowmahalla Palace.</span>
+        </button>
+
+      </div>
+
+      <div class="action-buttons">
+        <button class="big-btn primary" id="btn-yes" onclick="go('yes')">Yes — Let's do it! 😄</button>
+        <button class="big-btn danger" id="btn-no" onclick="goNo()">No — I'm boring 😐</button>
+      </div>
+      <footer>Select your favorites, then lock it in.</footer>
+    </section>
+
+    <!-- SCREEN YES -->
+    <section class="card" id="screen-yes" style="display:none">
+      <div class="emoji interactive-text">🥰🎉</div>
+      <h1 class="interactive-text">Best decision ever. 🥳</h1>
+      <p class="lead interactive-text">Drop a date in the chat so we can make it happen.</p>
+      <div style="margin-top:12px">
+        <button class="big-btn primary" onclick="done()">Send the message 💌</button>
+      </div>
+    </section>
+
+<!-- SCREEN NO -->
+    <section class="card" id="screen-no" style="display:none">
+      <div class="emoji interactive-text">🌀👁️</div>
+      <h1 class="interactive-text">Look into the spiral...</h1>
+      <p class="lead interactive-text">You are getting sleepy... You suddenly have the overwhelming urge to click "Yes"...</p>
+      <div style="margin-top:10px">
+        <button class="big-btn primary" onclick="backToPick()">Yes master, take me back 🧟</button>
+      </div>
+    </section>
+    
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

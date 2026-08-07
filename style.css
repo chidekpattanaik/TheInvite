@@ -1,0 +1,186 @@
+:root {
+  --card: rgba(255, 255, 255, 0.95);
+  --accent: #ff6b6b;
+  --accent2: #4CAF50;
+  --muted: #6b6b7a;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.8s ease-in-out; 
+  overflow: hidden; 
+}
+
+/* 1. Galaxy Background */
+.bg-galaxy {
+  background-color: #0b0c10;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.9) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px);
+  background-size: 50px 50px, 30px 30px;
+  background-position: 0 0, 15px 15px;
+  animation: moveStars 8s linear infinite;
+}
+@keyframes moveStars {
+  from { background-position: 0 0, 15px 15px; }
+  to { background-position: 50px 50px, 45px 45px; }
+}
+
+/* 2. Hypnotic Mind Control (Replaces Rain) */
+.bg-hypnotic {
+  background-color: #000;
+  overflow: hidden;
+}
+
+/* This creates the spinning wheel behind everything */
+.bg-hypnotic::before {
+  content: "";
+  position: fixed;
+  top: -50%; 
+  left: -50%;
+  width: 200%; 
+  height: 200%;
+  background: repeating-conic-gradient(
+    #000 0 15deg, 
+    #fff 15deg 30deg
+  );
+  animation: spinHypno 8s linear infinite;
+  z-index: -2; /* Keeps it behind the card */
+}
+
+@keyframes spinHypno {
+  100% { transform: rotate(360deg); }
+}
+/* 3. Too Fun Party Background (Yes) */
+.bg-party {
+  background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fbc2eb, #a18cd1);
+  background-size: 400% 400%;
+  animation: gradientBG 4s ease infinite;
+}
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating Polaroid Pictures */
+.float-img {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border: 5px solid white;
+  border-bottom: 18px solid white; 
+  border-radius: 4px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  opacity: 0.85;
+  z-index: -1;
+}
+
+.img1 { top: 5%; left: 5%; animation: float 6s ease-in-out infinite; }
+.img2 { bottom: 10%; right: 5%; animation: float 7s ease-in-out infinite reverse; }
+.img3 { top: 10%; right: 8%; animation: float 5s ease-in-out infinite; width: 90px; height: 90px; }
+.img4 { bottom: 15%; left: 10%; animation: float 8s ease-in-out infinite; width: 120px; height: 120px; }
+.img5 { top: 40%; left: -2%; animation: float 6s ease-in-out infinite reverse; width: 80px; height: 80px; }
+.img6 { top: 35%; right: -2%; animation: float 7s ease-in-out infinite; width: 100px; height: 100px; }
+
+@keyframes float { 
+  0%, 100% { transform: translateY(0) rotate(-5deg); } 
+  50% { transform: translateY(-15px) rotate(5deg); } 
+}
+
+/* Layout & Cards */
+.wrap {
+  max-width: 420px;
+  margin: 5% auto;
+  padding: 20px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 25px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.4s ease-out; 
+}
+
+/* FAINTING ANIMATION (No Blur! Just a dramatic slump) */
+.faint {
+  animation: swoonFaint 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes swoonFaint {
+  0% { transform: scale(1) translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: scale(0.95) translateY(25px) rotate(-3deg); opacity: 0.9; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.interactive-text {
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: inline-block;
+}
+.interactive-text:hover { transform: scale(1.05); }
+
+h1 { margin: 8px 0 6px; font-size: 22px; color: #222; }
+p.lead { color: var(--muted); margin: 0 0 14px; font-size: 15px; }
+
+/* The New Rich Options List */
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.rich-chip {
+  background: #f8f9fa;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+.rich-chip:hover { background: #eef0f2; transform: translateY(-2px); }
+.rich-chip.selected { background: #ffe4e1; border-color: var(--accent); }
+
+.chip-title { font-size: 15px; font-weight: 700; color: #333; margin-bottom: 4px; }
+.chip-desc { font-size: 13px; color: #666; font-weight: 400; }
+.rich-chip.selected .chip-title, .rich-chip.selected .chip-desc { color: var(--accent); }
+
+/* Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.big-btn {
+  display: inline-block;
+  padding: 14px 22px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+  width: 100%;
+  max-width: 250px;
+}
+.big-btn:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.primary { background: var(--accent2); color: #fff; }
+.danger { background: var(--accent); color: #fff; }
+
+footer { margin-top: 20px; font-size: 13px; color: var(--muted); }
